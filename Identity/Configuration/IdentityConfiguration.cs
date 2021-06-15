@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Identity.Configuration
 {
@@ -21,13 +22,14 @@ namespace Identity.Configuration
                 .AddEntityFrameworkStores<IdentityContext>()
                 .AddDefaultTokenProviders();
 
+
             return services;
         }
 
-        public static IApplicationBuilder UserIdentityConfiguration (this IApplicationBuilder app)
+        public static IApplicationBuilder UseIdentityConfiguration (this IApplicationBuilder app)
         {
-            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseAuthentication();
 
             return app;
         }

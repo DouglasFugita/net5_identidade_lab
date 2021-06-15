@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Identity.Models;
@@ -38,6 +36,21 @@ namespace Identity.Controllers
             if (!result.Succeeded) return BadRequest(result.Errors);
             await _signInManager.SignInAsync(user, false);
             return Ok();
+        }
+
+        [HttpPost("entrar")]
+        public async Task<ActionResult> Login(UsuarioLogin usuarioLogin)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState.Values.SelectMany(e => e.Errors));
+
+            var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
+
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+
+            return BadRequest("Usuario ou senha invalidos");
         }
 
     }

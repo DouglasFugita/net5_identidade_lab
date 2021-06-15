@@ -1,8 +1,10 @@
 using Identity.Configuration;
 using Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +29,7 @@ namespace Identity
             services.AddIdentityConfiguration(Configuration);
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Identity", Version = "v1" });
@@ -47,7 +50,7 @@ namespace Identity
 
             app.UseRouting();
 
-            app.UserIdentityConfiguration();
+            app.UseIdentityConfiguration();
 
             app.UseEndpoints(endpoints =>
             {
