@@ -17,7 +17,7 @@ Projeto baseado no projeto Identity, que foi alterado para o uso com JWT
 ## Keycloak
 O projeto utilizou uma imagem docker do Keycloak para os testes.
 
-###### Configuracao Keycloak
+#### Configuracao Keycloak
 ```
 docker run --name keycloak -p 8080:8080 -e KEYCLOAK_USER=<USERNAME> -e KEYCLOAK_PASSWORD=<PASSWORD> jboss/keycloak
 ```
@@ -38,7 +38,7 @@ User > Credentials
 - Password Confirmation: Senha@123
 - Temporary: False
 
-###### Postman para obtencao do Token
+#### Postman para obtencao do Token
 Foi utilizado Postman para geracao do token:
 Post : http://127.0.0.1:8080/auth/realms/master/protocol/openid-connect/token
 Headers:
